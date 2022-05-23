@@ -1,0 +1,26 @@
+{
+  "name": "tx-date-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mccarthykp/TX-Date-Library.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mccarthykp/TX-Date-Library/issues"
+  },
+  "homepage": "https://github.com/mccarthykp/TX-Date-Library#readme",
+  "devDependencies": {
+    "jest": "^28.1.0"
+  }
+}
