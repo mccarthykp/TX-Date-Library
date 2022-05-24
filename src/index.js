@@ -60,10 +60,10 @@ class D {
     return monthName
   }
 
-  // Short Month: Oct *************************
+  // Short Month: Oct
   get mon() {
-    // return this._date.month; = undefined? 
-    return this._date.month.slice(0, 3);
+    // return this._date.month; = undefined?
+    return this.month.slice(0, 3);
   }
 
   // Full Day: Monday
@@ -96,9 +96,9 @@ class D {
     return dayName
   }
 
-  // Short Day: Mon *************************
+  // Short Day: Mon
   get dy() {
-    return this._date.day.slice(0, 3);
+    return this.day.slice(0, 3);
   }
 
   // Date: 16
@@ -124,3 +124,4 @@ class D {
 
 let today = new D();
 console.log(today.mon);
+console.log(today.dy);
