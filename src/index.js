@@ -3,6 +3,7 @@ class D {
     this._date = new Date(...args);
   }
 
+  // GETTERS -~-~-~-~-~-~-~-~-~-~-~-~-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-
   // Full Year: 2022
   get year() {
     return this._date.getFullYear();
@@ -120,8 +121,80 @@ class D {
   get secs() {
     return this._date.getSeconds();
   }
+
+  // METHODS -~-~-~-~-~-~-~-~-~-~-~-~-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+  format(maskString) {
+    let returnString;
+
+    // if no arguments are passed, return this default date string
+    if (typeof maskString === undefined) {
+      returnString = `${this.month} ${this.date} ${this.year}`;
+      return returnString;
+    }
+
+    let arr = Array.from(maskString);
+    let returnArr = [];
+
+    for (let i = 0; i < arr.length; i++) {
+      let ch = arr[i]
+      let newCh;
+
+      switch(ch) {
+        case 'Y':
+          newCh = this.year;
+          break;
+        case 'y':
+          newCh = this.yr;
+          break;
+        case 'M':
+          newCh = this.month;
+          break;
+        case 'm':
+          newCh = this.mon;
+          break;
+        case 'D':
+          newCh = this.date;
+          break;
+        case 'd':
+          newCh = this.date;
+          break;
+        case '#':
+          newCh = this.date;
+          break;
+        case 'H':
+          newCh = this.hours;
+          break;
+        case 'h':
+          newCh = this.hours;
+          break;
+        case 'I':
+          newCh = this.mins;
+          break;
+        case 'i':
+          newCh = this.mins;
+          break;
+        case 'S':
+          newCh = this.secs;
+          break;
+        case 's':
+          newCh = this.secs;
+          break;
+        default:
+          returnArr.push(ch);
+      }
+
+      if (newCh === undefined) {
+
+      } else {
+        returnArr.push(newCh);
+      } 
+    }
+
+    return returnArr.join('');
+  }
 }
 
-let today = new D();
-console.log(today.mon);
-console.log(today.dy);
+let today = new D(2017, 0, 2, 3, 4, 5);
+
+// January 02 2017
+console.log(today.format('M:D:Y'));
