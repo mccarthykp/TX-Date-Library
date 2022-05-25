@@ -107,9 +107,31 @@ class D {
     return this._date.getDate();
   }
 
+  // Date Padded: 03
+  get datePadded() {
+    let date = this.date;
+
+    if (date >= 1 && date <= 9) {
+      date = date.toString().padStart(2, '0');
+    }
+
+    return date;
+  }
+
   // Hour: 13
   get hours() {
     return this._date.getHours();
+  }
+
+  // Hour Padded: 04
+  get hoursPadded() {
+    let hour = this.hours;
+
+    if (hour >= 0 && hour <= 9) {
+      hour = hour.toString().padStart(2, '0');
+    }
+
+    return hour;
   }
 
   // Minutes: 29
@@ -117,9 +139,31 @@ class D {
     return this._date.getMinutes();
   }
 
-  // Seconds: 3
+  // Minutes Padded: 05
+  get minsPadded() {
+    let min = this.mins
+
+    if (min >= 0 && min <= 9) {
+      min = min.toString().padStart(2, '0');
+    }
+
+    return min;
+  }
+
+  // Seconds: 12
   get secs() {
     return this._date.getSeconds();
+  }
+
+  // Seconds Padded: 06
+  get secsPadded() {
+    let sec = this.secs;
+
+    if (sec >= 0 && sec <= 9) {
+      sec = sec.toString().padStart(2, '0');
+    }
+
+    return sec;
   }
 
   // METHODS -~-~-~-~-~-~-~-~-~-~-~-~-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-
@@ -127,7 +171,7 @@ class D {
     let returnString;
 
     // if no arguments are passed, return this default date string
-    if (typeof maskString === undefined) {
+    if (typeof maskString === 'undefined') {
       returnString = `${this.month} ${this.date} ${this.year}`;
       return returnString;
     }
@@ -140,42 +184,63 @@ class D {
       let newCh;
 
       switch(ch) {
+        // year full
         case 'Y':
           newCh = this.year;
           break;
+        // year short
         case 'y':
           newCh = this.yr;
           break;
+        // month full
         case 'M':
           newCh = this.month;
           break;
+        // month short
         case 'm':
           newCh = this.mon;
           break;
-        case 'D':
-          newCh = this.date;
+        // day full
+        case 'X':
+          newCh = this.day;
           break;
-        case 'd':
-          newCh = this.date;
+        // day short
+        case 'x':
+          newCh = this.dy;
           break;
+        // date ordinal suffix
         case '#':
           newCh = this.date;
           break;
-        case 'H':
-          newCh = this.hours;
+        // date padded
+        case 'D':
+          newCh = this.datePadded;
           break;
+        // date
+        case 'd':
+          newCh = this.date;
+          break;
+        // hours padded
+        case 'H':
+          newCh = this.hoursPadded;
+          break;
+        // hours
         case 'h':
           newCh = this.hours;
           break;
+        // minutes padded
         case 'I':
-          newCh = this.mins;
+          newCh = this.minsPadded;
           break;
+        // minutes
         case 'i':
           newCh = this.mins;
           break;
+        // seconds padded
         case 'S':
-          newCh = this.secs;
+          newCh = this.secsPadded;
           break;
+        // seconds
         case 's':
           newCh = this.secs;
           break;
@@ -197,4 +262,6 @@ class D {
 let today = new D(2017, 0, 2, 3, 4, 5);
 
 // January 02 2017
-console.log(today.format('M:D:Y'));
+console.log(today.format());
+console.log(today.format('M:X:Y'));
+console.log(today.format('H:I:S'));
