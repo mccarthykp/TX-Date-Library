@@ -118,6 +118,26 @@ class D {
     return date;
   }
 
+  // Date Ordinal: 1st, 2nd, 3rd, 4th
+  get dateOrdinal() {
+    let date = this.date;
+
+    if (date > 3 && date < 21) {
+      return date + 'th';
+    }
+
+    switch (date % 10) {
+      case 1:
+        return date + 'st';
+      case 2:
+        return date + 'nd';
+      case 3: 
+        return date + 'rd';
+      default:
+        return date + 'th';
+    }
+  }
+
   // Hour: 13
   get hours() {
     return this._date.getHours();
@@ -210,7 +230,7 @@ class D {
           break;
         // date ordinal suffix
         case '#':
-          newCh = this.date;
+          newCh = this.dateOrdinal;
           break;
         // date padded
         case 'D':
@@ -263,5 +283,6 @@ let today = new D(2017, 0, 2, 3, 4, 5);
 
 // January 02 2017
 console.log(today.format());
+console.log(today.format('M #'));
 console.log(today.format('M:X:Y'));
 console.log(today.format('H:I:S'));
