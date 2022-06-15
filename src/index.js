@@ -3,6 +3,28 @@ class D {
     this._date = new Date(...args);
   }
 
+  // METHODS -~-~-~-~-~-~-~-~-~-~-~-~-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-
+  when() {
+    let buildStr = '';
+
+    let ago = ' ago';
+    let fromNow = ' from now';
+    let today = 'Today';
+
+    let years = (this.getFullYear - this._date.getFullYear);
+    let months = (this.getMonth - this._date.getMonth);
+    let days = (this.getDate - this._date.getDate);
+    let hours = (this.getHours - this._date.getHours);
+    let minutes = (this.getMinutes - this._date.getMinutes);
+    let seconds = (this.getSeconds - this._date.getSeconds);
+
+    if (this == this._date) {
+      buildStr = today;
+    }
+
+    return buildStr;
+  }
+
   // GETTERS -~-~-~-~-~-~-~-~-~-~-~-~-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-
   // Full Year: 2022
   get year() {
@@ -18,7 +40,7 @@ class D {
   // Full Month: October
   get month() {
     let monthNum = this._date.getMonth();
-    let monthName = ''
+    let monthName = '';
 
     switch(monthNum) {
       case 0:
@@ -58,19 +80,18 @@ class D {
         monthName = 'December';
         break;
     }
-    return monthName
+    return monthName;
   }
 
   // Short Month: Oct
   get mon() {
-    // return this._date.month; = undefined?
     return this.month.slice(0, 3);
   }
 
   // Full Day: Monday
   get day() {
     let dayNum = this._date.getDay();
-    let dayName = ''
+    let dayName = '';
 
     switch(dayNum) {
       case 0:
@@ -94,7 +115,7 @@ class D {
       case 6:
         dayName = 'Saturday';
     }
-    return dayName
+    return dayName;
   }
 
   // Short Day: Mon
@@ -161,7 +182,7 @@ class D {
 
   // Minutes Padded: 05
   get minsPadded() {
-    let min = this.mins
+    let min = this.mins;
 
     if (min >= 0 && min <= 9) {
       min = min.toString().padStart(2, '0');
@@ -280,9 +301,12 @@ class D {
 }
 
 let today = new D(2017, 0, 2, 3, 4, 5);
+let another = new D(2022, 5, 13);
 
 // January 02 2017
 console.log(today.format());
 console.log(today.format('M #'));
 console.log(today.format('M:X:Y'));
 console.log(today.format('H:I:S'));
+
+console.log(another.when())
